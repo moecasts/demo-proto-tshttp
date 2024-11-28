@@ -1,0 +1,68 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: Greeter API
+    description: The greeting service definition.
+    version: 0.0.1
+paths:
+    /helloworld/{name}:
+        get:
+            tags:
+                - Greeter
+            description: Sends a greeting
+            operationId: Greeter_SayHello
+            parameters:
+                - name: name
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/helloworld.v1.HelloReply'
+components:
+    schemas:
+        helloworld.v1.Address:
+            type: object
+            properties:
+                city:
+                    type: string
+                street:
+                    type: string
+        helloworld.v1.HelloReply:
+            type: object
+            properties:
+                message:
+                    type: string
+                bio:
+                    type: array
+                    items:
+                        type: string
+                social:
+                    $ref: '#/components/schemas/helloworld.v1.Social'
+                addresses:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/helloworld.v1.Address'
+                timestamp:
+                    type: string
+                    format: date-time
+                status:
+                    type: integer
+                    format: enum
+            description: The response message containing the greetings
+        helloworld.v1.Social:
+            type: object
+            properties:
+                email:
+                    type: string
+                github:
+                    type: string
+tags:
+    - name: Greeter
